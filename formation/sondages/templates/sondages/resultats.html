@@ -1,0 +1,25 @@
+{% extends 'sondages/_base.html' %}
+
+{% block titre %}
+    Résultats pour la question : {{ question.texte }}
+{% endblock %}
+{% block contenu %}
+    <h3>{{ question.texte }}</h3>
+    <br>
+    <table class="table table-bordered">
+        <thead class="row">
+            <tr>
+                <th class="col-md-1">Texte</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reponse in question.reponse_set.all %}
+            <tr>
+                <td>{{ reponse.texte }}</td>
+                <td>{{ reponse.score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

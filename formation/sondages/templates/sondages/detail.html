@@ -1,0 +1,19 @@
+{% extends 'sondages/_base.html' %}
+
+{% block titre %}
+    Détail de la question : {{ question.texte }}
+{% endblock %}
+{% block contenu %}
+    <h3>{{ question.texte }}</h3>
+    <br>
+    <form method="post" action="{% url 'sondages:voter' question.id %}">
+        {% for reponse in question.reponse_set.all %}
+            <input type="radio" name="reponse" value="{{ reponse.id }}">
+            <label>{{ reponse.texte }}</label>
+            <br>
+        {% endfor %}
+        {% csrf_token %}
+        <br>
+        <button class="btn btn-info" type="submit">Valider</button>
+    </form>
+{% endblock %}
